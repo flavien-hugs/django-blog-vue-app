@@ -10,6 +10,9 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 
+admin.site.site_header = admin.site.site_title = "Django With Vue JS Blog"
+admin.site.index_title = "bienvenu sur votre tableau d'administration".capitalize()
+
 urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path(settings.ADMIN_URL, admin.site.urls),
