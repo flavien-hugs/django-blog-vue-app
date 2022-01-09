@@ -12,20 +12,6 @@ class PostQuerySet(models.QuerySet):
             status='Publié',
             published__lte=timezone.now()
         )
-    
-    def paid(self):
-        return self.filter(
-            status='Publié',
-            reading='Payant',
-            published__lte=timezone.now()
-        )
-    
-    def free(self):
-        return self.filter(
-            status='Publié',
-            reading='Gratuit',
-            published__lte=timezone.now()
-        )
 
     def search(self, query):
         lookup = (
@@ -43,12 +29,6 @@ class PostManager(models.Manager):
 
     def published(self):
         return self.get_queryset().published()
-    
-    def paid(self):
-        return self.get_queryset().paid()
-    
-    def free(self):
-        return self.get_queryset().free()
 
     def search(self, query=None):
         if query is None:
