@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
 
+from common.utilitary import img_url
 from blog.managers import PostManager
 from common.models import BaseTimeStampModel, UUIDSlugMixin
 
@@ -84,8 +85,9 @@ class Post(UUIDSlugMixin, BaseTimeStampModel):
         verbose_name="Contenu de l'article",
         help_text="Éditer le contenu de l'article."
     )
-    cover = models.ImageField(
-        upload_to="post/",
+    image = models.ImageField(
+        file_prepend = "post/image/"
+        upload_to=img_url,,
         verbose_name="ajouter une image",
         help_text="ajouter une image descriptive de l'article.",
         **NULL_AND_BLANK
@@ -133,10 +135,10 @@ class Post(UUIDSlugMixin, BaseTimeStampModel):
 
 
 @receiver([models.signals.pre_save], sender=Post)
-def delete_old_cover(sender, instance, *args, **kwargs):
+def delete_old_image(sender, instance, *args, **kwargs):
     if instance.pk:
         try:
-            old_cover = Post.objects.get(pk=instance.pk).cover
-            if old_cover and old_cover.url != instance.cover.url:
-                old_cover.delete(save=False)
+            old_image = Post.objects.get(pk=instance.pk).image
+            if old_image and old_image.url != instance.image.url:
+                old_image.delete(save=False)
         except: pass
