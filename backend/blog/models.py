@@ -33,7 +33,7 @@ class Category(UUIDSlugMixin, BaseTimeStampModel):
     )
 
     class Meta:
-        ordering = ['-name']
+        ordering = ['-created_at']
         verbose_name_plural = 'catégories'
         indexes = [models.Index(fields=['uuid'])]
 
