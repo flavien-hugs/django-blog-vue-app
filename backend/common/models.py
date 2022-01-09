@@ -33,6 +33,7 @@ class UUIDSlugMixin(models.Model):
         unique=True,
         editable=False,
         verbose_name='slug',
+        unique_for_date='created_at',
         help_text='Automatiquement formé à partir du nom.',
         **NULL_AND_BLANK
     )
