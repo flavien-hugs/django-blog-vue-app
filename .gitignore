@@ -70,8 +70,7 @@ backend/staticfiles
 
 .DS_Store
 node_modules
-frontend/frontend/dist
-
+frontend/dist
 
 # local env files
 frontend/.env.local
@@ -91,3 +90,4 @@ frontend/frontend/*.ntvs*
 frontend/*.njsproj
 frontend/*.sln
 frontend/*.sw?
+frontend/yarn.lock
