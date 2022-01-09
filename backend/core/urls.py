@@ -14,6 +14,8 @@ admin.site.site_header = admin.site.site_title = "Django With Vue JS Blog"
 admin.site.index_title = "bienvenu sur votre tableau d'administration".capitalize()
 
 urlpatterns = [
+    path('api/v1/', include('blog.urls', namespace='blog')),
+
     path('summernote/', include('django_summernote.urls')),
     path(settings.ADMIN_URL, admin.site.urls),
 
