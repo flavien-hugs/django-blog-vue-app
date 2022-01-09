@@ -17,7 +17,7 @@ admin.site.unregister(Group)
 
 
 @admin.register(Category)
-class CategoryAdmin(SummernoteModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     model = Category
     list_per_page = 10
     date_hierarchy = "created_at"
@@ -77,9 +77,8 @@ class PostAdmin(SummernoteModelAdmin):
         "category",
         "name",
         "view",
-        "status",
-        "show_post_url",
         'published',
+        "status",
     ]
     list_display_links = [
         'name',
@@ -90,17 +89,9 @@ class PostAdmin(SummernoteModelAdmin):
         "published",
     )
     list_editable = (
-        "published",
         "status",
     )
     search_fields = (
         "name",
         "status",
     )
-    
-    @mark_safe
-    @admin.display(description="Voir l'article")
-    def show_post_url(self, instance):
-        url = instance.get_absolute_url()
-        response = format_html(f"""<a target="_blank" href="{url}">{url}</a>""")
-        return response
