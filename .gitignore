@@ -65,3 +65,29 @@ backend/logs/*.log
 backend/media/
 .idea/
 backend/staticfiles
+
+# frontend
+
+.DS_Store
+node_modules
+frontend/frontend/dist
+
+
+# local env files
+frontend/.env.local
+frontend/.env.*.local
+
+# Log files
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+frontend/frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?
