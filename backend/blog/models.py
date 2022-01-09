@@ -20,9 +20,15 @@ class Category(UUIDSlugMixin, BaseTimeStampModel):
     name = models.CharField(
         unique=True,
         max_length=120,
-        default="Non définie"
+        default="Non définie",
         verbose_name="type de catégorie d'article",
         help_text="Définir le type de catégorie de l'article.",
+        **NULL_AND_BLANK
+    )
+    image = models.ImageField(
+        upload_to=img_url,
+        verbose_name="ajouter une image",
+        help_text="ajouter une image descriptive de l'article.",
         **NULL_AND_BLANK
     )
 
@@ -50,6 +56,13 @@ class Category(UUIDSlugMixin, BaseTimeStampModel):
             self.slug = self._get_unique_slug()
         super().save(*args, **kwargs)
 
+    def posts(self):
+        return Post.objects.filter(category=self)
+
+    @admin.display(description="nombre d'articles dans cette catégorie")
+    def post_count(self):
+        return self.posts().count()
+
 
 class Post(UUIDSlugMixin, BaseTimeStampModel):
     
@@ -62,6 +75,8 @@ class Post(UUIDSlugMixin, BaseTimeStampModel):
         (B, 'Brouillon'),
         (R, 'Relecture')
     )
+
+    file_prepend = "post/image/"
     
     category = models.ForeignKey(
         to=Category,
@@ -86,8 +101,7 @@ class Post(UUIDSlugMixin, BaseTimeStampModel):
         help_text="Éditer le contenu de l'article."
     )
     image = models.ImageField(
-        file_prepend = "post/image/"
-        upload_to=img_url,,
+        upload_to=img_url,
         verbose_name="ajouter une image",
         help_text="ajouter une image descriptive de l'article.",
         **NULL_AND_BLANK
