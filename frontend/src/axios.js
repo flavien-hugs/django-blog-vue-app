@@ -5,6 +5,4 @@ const getApi = axios.create({
     timeout: 1000,
 })
 
-export {
-    getApi
-}
+export { getApi }

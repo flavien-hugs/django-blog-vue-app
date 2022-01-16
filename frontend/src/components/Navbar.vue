@@ -42,21 +42,21 @@
                         <li class="nav-item">
                             <router-link
                                 class="nav-link"
-                                to="/">
+                                to="/" exact>
                                 Home  
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link
                                 class="nav-link"
-                                to="/blog">
+                                to="/blog" exact>
                                 Blog  
                             </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link
                                 class="nav-link"
-                                to="/about">
+                                to="/about" exact>
                                 About
                             </router-link>
                         </li>
