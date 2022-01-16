@@ -56,11 +56,11 @@ jobs:
     
     - name: Run Migrations
       run: |
-        python manage.py migrate
+        cd backend && python manage.py migrate
     
     - name: Run Tests
       run: |
-        python manage.py test
+        cd backend && python manage.py test
   
   security:
     runs-on: ubuntu-latest
